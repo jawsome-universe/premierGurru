@@ -26,7 +26,7 @@ public class GurruPremierLoginPage extends Page {
 	public GurruPremierLoginPage(WebDriver webDriver) {
 		super(webDriver); }
 
-	@Step("Login to Planeta Kino with credentials: {login} / ******")
+	@Step("Login to Gurru Premier with Admin credentials: {login} / ******")
 	public GurruPremierContactsPage loginToGurruPremier(String login, String password) {
 		gurruLogoImage.isDisplayed();
 		usernameTextField.clear();
