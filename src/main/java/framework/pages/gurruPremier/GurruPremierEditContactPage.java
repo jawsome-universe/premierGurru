@@ -1,7 +1,7 @@
 package framework.pages.gurruPremier;
 
 import com.google.common.base.Function;
-import framework.pages.LitsPageFactory;
+import framework.pages.GurruPageFactory;
 import framework.pages.Page;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
@@ -12,7 +12,7 @@ public class GurruPremierEditContactPage extends Page {
 
 	//Click on Title drop-down menu
 	@FindBy(xpath = "//span[contains(@class, 'k-dropdown-wrap k-state-default')]")
-	private WebElement openTitleDropdown;
+	private WebElement titleDropdown;
 
 	//Select Title from drop-down list - Mr
 	@FindBy(xpath = "//ul[contains(@class, 'k-list k-reset')]//li[contains(@data-offset-index, '0')]")
@@ -46,9 +46,10 @@ public class GurruPremierEditContactPage extends Page {
 		super(webDriver);
 	}
 
-	@Step("Login to Planeta Kino with credentials: {login} / ******")
+	@Step("Edit Contact page checking existed values and update one")
 	public GurruPremierEditContactPage loginToGurruPremier(String login, String password) { //add new page class
-		openTitleDropdown.click();
+
+		titleDropdown.click();
 		selectTitle.click();
 		firstNameTextField.sendKeys("Robert"); //option for this should be added
 		lastNameTextField.sendKeys("Plant");  //option for this should be added
@@ -58,11 +59,11 @@ public class GurruPremierEditContactPage extends Page {
 		createButton.click();
 
 
-		return LitsPageFactory.initElements(webDriver, GurruPremierEditContactPage.class); //add new page class
+		return GurruPageFactory.initElements(webDriver, GurruPremierEditContactPage.class); //add new page class
 	}
 
 	@Override
 	public Function<WebDriver, ?> isPageLoaded() {
-		return wait -> !openTitleDropdown.isEnabled();
+		return wait -> !positionTextField.isEnabled();
 	}
 }

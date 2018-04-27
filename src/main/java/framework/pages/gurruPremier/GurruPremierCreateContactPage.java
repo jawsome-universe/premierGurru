@@ -1,7 +1,7 @@
 package framework.pages.gurruPremier;
 
 import com.google.common.base.Function;
-import framework.pages.LitsPageFactory;
+import framework.pages.GurruPageFactory;
 import framework.pages.Page;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
@@ -46,8 +46,8 @@ public class GurruPremierCreateContactPage extends Page {
 		super(webDriver);
 	}
 
-	@Step("Login to Planeta Kino with credentials: {login} / ******")
-	public GurruPremierCreateContactPage loginToGurruPremier(String login, String password) { //add new page class
+	@Step("Create Contact")
+	public GurruPremierContactsPageAfterContactCreation loginToGurruPremier(String login, String password) { //add new page class
 		openTitleDropdown.click();
 		selectTitle.click();
 		firstNameTextField.sendKeys("Robert"); //option for this should be added
@@ -58,7 +58,7 @@ public class GurruPremierCreateContactPage extends Page {
 		createButton.click();
 
 
-		return LitsPageFactory.initElements(webDriver, GurruPremierCreateContactPage.class); //add new page class
+		return GurruPageFactory.initElements(webDriver, GurruPremierContactsPageAfterContactCreation.class); //add new page class
 	}
 
 	@Override

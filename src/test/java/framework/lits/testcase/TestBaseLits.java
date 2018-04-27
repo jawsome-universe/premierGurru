@@ -5,7 +5,7 @@ import org.slf4j.Logger;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
-import framework.pages.LitsPageFactory;
+import framework.pages.GurruPageFactory;
 import framework.pages.lits.enterapplication.HomePage;
 import framework.utility.LogFactory;
 import framework.utility.PropertyLoader;
@@ -34,7 +34,7 @@ public class TestBaseLits {
 
 		LOG.info("Navigating to test url");
 		webDriver.get(PropertyLoader.loadProperty("testsite1.url"));
-		homePage = LitsPageFactory.initElements(webDriver, HomePage.class);
+		homePage = GurruPageFactory.initElements(webDriver, HomePage.class);
 	}
 
 	@AfterMethod(alwaysRun = true)

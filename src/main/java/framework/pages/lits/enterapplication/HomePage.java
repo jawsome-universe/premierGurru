@@ -11,7 +11,7 @@ import org.slf4j.Logger;
 
 import com.google.common.base.Function;
 
-import framework.pages.LitsPageFactory;
+import framework.pages.GurruPageFactory;
 import framework.pages.Page;
 import framework.pages.lits.homemenu.ContactsPage;
 import framework.utility.LogFactory;
@@ -52,13 +52,13 @@ public class HomePage extends Page {
 	@Step("Clicking on become student button")
 	public BecomeStudentPage clickOnBecomeStudent() {
 		jsClickOnElement(becomeStudentButton);
-		return LitsPageFactory.initElements(webDriver, BecomeStudentPage.class);
+		return GurruPageFactory.initElements(webDriver, BecomeStudentPage.class);
 	}
 	
 	@Step("Openinig contacts menu")
 	public ContactsPage openContactsMenu() {
 		jsClickOnElement(contactsMenuButton);
-		return LitsPageFactory.initElements(webDriver, ContactsPage.class);
+		return GurruPageFactory.initElements(webDriver, ContactsPage.class);
 	}
 	
 	@Step("Openinig schoolname by name: {schoolName} and course name by name: {expectedPageClazz}")
@@ -70,7 +70,7 @@ public class HomePage extends Page {
 		wait.until(ExpectedConditions.visibilityOf(courses));
 		courses.findElement(By.xpath(".//ul//a[contains(text(),'" + course + "')]")).click();
 		
-		return LitsPageFactory.initElements(webDriver, expectedPageClazz);
+		return GurruPageFactory.initElements(webDriver, expectedPageClazz);
 	}
 
 	@Override

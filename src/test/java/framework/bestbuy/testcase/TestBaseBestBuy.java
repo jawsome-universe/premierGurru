@@ -5,7 +5,7 @@ import org.slf4j.Logger;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
-import framework.pages.LitsPageFactory;
+import framework.pages.GurruPageFactory;
 import framework.pages.bestbuy.BestBuyHelloPage;
 import framework.utility.LogFactory;
 import framework.utility.PropertyLoader;
@@ -26,7 +26,7 @@ public class TestBaseBestBuy {
 
 		LOG.info("Navigating to test url");
 		webDriver.get(PropertyLoader.loadProperty("testsite4.url"));
-		bestBuyHelloPage = LitsPageFactory.initElements(webDriver, BestBuyHelloPage.class);
+		bestBuyHelloPage = GurruPageFactory.initElements(webDriver, BestBuyHelloPage.class);
 	}
 
 	@AfterMethod(alwaysRun = true)

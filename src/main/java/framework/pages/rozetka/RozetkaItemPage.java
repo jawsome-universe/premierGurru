@@ -8,7 +8,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import com.google.common.base.Function;
 
-import framework.pages.LitsPageFactory;
+import framework.pages.GurruPageFactory;
 import framework.pages.Page;
 import io.qameta.allure.Step;
 
@@ -25,7 +25,7 @@ public class RozetkaItemPage extends Page {
 	public RozetkaCartPage buyProduct() {
 		buyButton.click();
 
-		return LitsPageFactory.initElements(webDriver, RozetkaCartPage.class);
+		return GurruPageFactory.initElements(webDriver, RozetkaCartPage.class);
 	}
 
 	@Override

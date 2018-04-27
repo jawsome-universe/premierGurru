@@ -1,7 +1,7 @@
 package framework.pages.gurruPremier;
 
 import com.google.common.base.Function;
-import framework.pages.LitsPageFactory;
+import framework.pages.GurruPageFactory;
 import framework.pages.Page;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
@@ -23,10 +23,9 @@ public class GurruPremierLoginPage extends Page {
 	private WebElement loginButton;
 
 
-	public GurruPremierLoginPage(WebDriver webDriver) {
-		super(webDriver); }
+	public GurruPremierLoginPage(WebDriver webDriver) { super(webDriver); }
 
-	@Step("Login to Gurru Premier with Admin credentials: {login} / ******")
+	@Step("Login to Gurru Premier with Admin credentials: {login} / ********")
 	public GurruPremierContactsPage loginToGurruPremier(String login, String password) {
 		gurruLogoImage.isDisplayed();
 		usernameTextField.clear();
@@ -35,10 +34,9 @@ public class GurruPremierLoginPage extends Page {
 		passwordTextField.sendKeys(password);
 		loginButton.click();
 
-		return LitsPageFactory.initElements(webDriver, GurruPremierContactsPage.class); }
+		return GurruPageFactory.initElements(webDriver, GurruPremierContactsPage.class); }
 
 	@Override
-	public Function<WebDriver, ?> isPageLoaded() {
-		return wait -> !usernameTextField.isEnabled(); }
+	public Function<WebDriver, ?> isPageLoaded() { return wait -> !usernameTextField.isEnabled(); }
 
 }

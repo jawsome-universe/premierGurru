@@ -1,7 +1,7 @@
 package framework.pages.gurruPremier;
 
 import com.google.common.base.Function;
-import framework.pages.LitsPageFactory;
+import framework.pages.GurruPageFactory;
 import framework.pages.Page;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
@@ -25,7 +25,6 @@ public class GurruPremierContactsPage extends Page {
 	private WebElement createContactButton;
 
 
-
 	public GurruPremierContactsPage(WebDriver webDriver) {
 		super(webDriver);
 	}
@@ -40,7 +39,7 @@ public class GurruPremierContactsPage extends Page {
 
 
 
-		return LitsPageFactory.initElements(webDriver, GurruPremierCreateContactPage.class);
+		return GurruPageFactory.initElements(webDriver, GurruPremierCreateContactPage.class);
 	}
 
 	@Override
