@@ -7,8 +7,11 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class GurruPremierEditContactPage extends Page {
+
+	/////
 
 	//Click on Title drop-down menu
 	@FindBy(xpath = "//span[contains(@class, 'k-dropdown-wrap k-state-default')]")
@@ -38,8 +41,17 @@ public class GurruPremierEditContactPage extends Page {
 	@FindBy(xpath = "//div[contains(@class, 'form-group')]/input[contains(@ng-model, 'contact.position')]")
 	private WebElement positionTextField;
 
+
+	/////
+
+
+	//Click on Save button
 	@FindBy(xpath = "//div[contains(@class, 'btn_grup dbim')]/button[3]")
-	private WebElement createButton;
+	private WebElement saveButton;
+
+	//Check Confirm message is present
+	@FindBy(xpath = "//div[contains(@class, 'growl-item alert ng-scope alert-success icon alert-dismissable')]")
+	private WebElement confirmSavePopup;
 
 
 	public GurruPremierEditContactPage(WebDriver webDriver) {
@@ -47,16 +59,18 @@ public class GurruPremierEditContactPage extends Page {
 	}
 
 	@Step("Edit Contact page checking existed values and update one")
-	public GurruPremierEditContactPage loginToGurruPremier(String login, String password) { //add new page class
+	public GurruPremierEditContactPage checkValuesOnContactPage() { //add new page class
 
-		titleDropdown.click();
-		selectTitle.click();
-		firstNameTextField.sendKeys("Robert"); //option for this should be added
-		lastNameTextField.sendKeys("Plant");  //option for this should be added
-		mobileTextField.sendKeys();//option for this should be added
-		emailTextField.sendKeys();//option for this should be added
-		positionTextField.sendKeys(); //option for this should be added
-		createButton.click();
+		//titleDropdown.click();
+		//selectTitle.click();
+		//firstNameTextField.sendKeys("Robert"); //option for this should be added
+		//lastNameTextField.sendKeys("Plant");  //option for this should be added
+		//mobileTextField.sendKeys();//option for this should be added
+		//emailTextField.sendKeys();//option for this should be added
+		//positionTextField.sendKeys(); //option for this should be added
+		saveButton.click();
+		getWebDriverWait(5).until(ExpectedConditions.invisibilityOf((WebElement) confirmSavePopup));
+		confirmSavePopup.isDisplayed();
 
 
 		return GurruPageFactory.initElements(webDriver, GurruPremierEditContactPage.class); //add new page class
@@ -64,6 +78,6 @@ public class GurruPremierEditContactPage extends Page {
 
 	@Override
 	public Function<WebDriver, ?> isPageLoaded() {
-		return wait -> !positionTextField.isEnabled();
+		return wait -> !saveButton.isEnabled();
 	}
 }
