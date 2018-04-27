@@ -8,53 +8,43 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import org.openqa.selenium.support.ui.ExpectedConditions;
+
 public class GurruPremierContactsPage extends Page {
 
-	@FindBy(xpath = "//*[@id=\"login_form\"]/div[1]/img")
-	private WebElement gurruLogoImage;
+	//Click on Customers expand list
+	@FindBy(xpath = "//li[contains(@class, 'ng-scope')]//span")
+	private WebElement customersExpandList;
 
-	@FindBy(xpath = "//*[@id=\"login-username\"]")
-	private WebElement usernameTextField;
+	//Click on Contacts tab
+	@FindBy(xpath = "//li[contains(@class, 'ng-scope')]//a[contains(@ui-sref , 'contacts')]")
+	private WebElement contactsTab;
 
-	@FindBy(xpath = "//*[@id=\"login-password\"]")
-	private WebElement passwordTextField;
+	//Click on Create Contact button
+	@FindBy(xpath = "//*[contains(text(), 'Create Contact')]")
+	private WebElement createContactButton;
 
-	@FindBy(xpath = "//*[@id=\"loginBtn\"]")
-	private WebElement loginButton;
 
 
 	public GurruPremierContactsPage(WebDriver webDriver) {
 		super(webDriver);
 	}
 
-	@Step("Login to Planeta Kino with credentials: {login} / ******")
-	public GurruPremierContactsPage loginToGurruPremier(String login, String password) {
-		gurruLogoImage.isDisplayed();
-		usernameTextField.clear();
-		usernameTextField.sendKeys(login);
-		passwordTextField.clear();
-		passwordTextField.sendKeys(password);
-		loginButton.click();
+	@Step("Proceed to Create new Contact page")
+	public GurruPremierCreateContactPage loginToGurruPremier(String login, String password) {
+		customersExpandList.click();
+		contactsTab.click();
+		getWebDriverWait(10).until(ExpectedConditions.elementToBeClickable(createContactButton));
+		createContactButton.click();
+		getWebDriverWait(10).until(ExpectedConditions.elementToBeClickable(createContactButton));
 
-		return LitsPageFactory.initElements(webDriver, GurruPremierContactsPage.class);
 
+
+		return LitsPageFactory.initElements(webDriver, GurruPremierCreateContactPage.class);
 	}
 
 	@Override
 	public Function<WebDriver, ?> isPageLoaded() {
-		return null;
+		return wait -> !createContactButton.isEnabled();
 	}
-/*
-	@Step("Click on movie by index: {movieIndex}")
-	public PlanetaKinoMovieDetailsPage clickOnMovieByIndex(int movieIndex) {
-		moviesList.get(movieIndex).click();
-		return LitsPageFactory.initElements(webDriver, PlanetaKinoMovieDetailsPage.class);
-	}
-
-	@Override
-	public Function<WebDriver, ?> isPageLoaded() {
-		return wait -> !moviesList.isEmpty();
-	}
-	*/
-	
 }
