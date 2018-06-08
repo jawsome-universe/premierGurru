@@ -57,7 +57,6 @@ public class GurruPremierCreateContactPage extends Page {
 		positionTextField.sendKeys(); //option for this should be added
 		createButton.click();
 
-
 		return GurruPageFactory.initElements(webDriver, GurruPremierContactsPageAfterContactCreation.class); //add new page class
 	}
 

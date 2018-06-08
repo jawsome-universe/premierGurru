@@ -1,14 +1,15 @@
-package framework.pages.gurruPremier;
+package framework.pages.gurruPremierIntro;
 
 import com.google.common.base.Function;
 import framework.pages.GurruPageFactory;
 import framework.pages.Page;
+import framework.pages.gurruPremier.GurruPremierContactsPage;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class GurruPremierLoginPage extends Page {
+public class GurruPremierLogin extends Page {
 
 	@FindBy(xpath = "//*[@id=\"login_form\"]/div[1]/img")
 	private WebElement gurruLogoImage;
@@ -23,10 +24,10 @@ public class GurruPremierLoginPage extends Page {
 	private WebElement loginButton;
 
 
-	public GurruPremierLoginPage(WebDriver webDriver) { super(webDriver); }
+	public GurruPremierLogin(WebDriver webDriver) { super(webDriver); }
 
 	@Step("Login to Gurru Premier with Admin credentials: {login} / ********")
-	public GurruPremierContactsPage loginToGurruPremier(String adminLogin, String adminPassword) {
+	public GurruPremierUsersPage loginToGurruPremier(String adminLogin, String adminPassword) {
 		gurruLogoImage.isDisplayed();
 		usernameTextField.clear();
 		usernameTextField.sendKeys(adminLogin);
@@ -34,7 +35,10 @@ public class GurruPremierLoginPage extends Page {
 		passwordTextField.sendKeys(adminPassword);
 		loginButton.click();
 
-		return GurruPageFactory.initElements(webDriver, GurruPremierContactsPage.class); }
+		return GurruPageFactory.initElements(webDriver, GurruPremierUsersPage.class); }
+
+
+
 
 	@Override
 	public Function<WebDriver, ?> isPageLoaded() { return wait -> !usernameTextField.isEnabled(); }
