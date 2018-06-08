@@ -33,14 +33,14 @@ public class GurruPremierUsersPageAfterUserCreation extends Page {
 	}
 
 	@Step("Check validation pop up and proceed to Edit Contact page")
-	public GurruPremierEditContactPage loginToGurruPremier(String login, String password) { /////////////////!!!!!
+	public GurruPremierEditUserPage loginToGurruPremier(String login, String password) { /////////////////!!!!!
 		confirmPopup.isDisplayed();
 		confirmPopup.getAttribute("Successfully created User");
 		confirmPopupCloseButton.click();
 		getWebDriverWait(5).until(ExpectedConditions.elementToBeClickable((WebElement) firstElementFromUsersList));
 		action.doubleClick((WebElement) firstElementFromUsersList).perform(); //doubleclick on first element in the grid
 
-		return GurruPageFactory.initElements(webDriver, GurruPremierEditContactPage.class);
+		return GurruPageFactory.initElements(webDriver, GurruPremierEditUserPage.class);
 	}
 
 	@Override
