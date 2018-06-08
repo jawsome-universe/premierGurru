@@ -30,7 +30,7 @@ public class GurruPremierUsersPage extends Page {
 	}
 
 	@Step("Proceed to Create new Contact page")
-	public GurruPremierCreateContactPage loginToGurruPremier(String login, String password) { /////////////!!!!
+	public GurruPremierCreateUserPage loginToGurruPremier(String login, String password) { /////////////!!!!
 		usersExpandList.click();
 		usersTab.click();
 		getWebDriverWait(10).until(ExpectedConditions.elementToBeClickable(createUserButton));
@@ -38,7 +38,7 @@ public class GurruPremierUsersPage extends Page {
 		getWebDriverWait(10).until(ExpectedConditions.elementToBeClickable(createUserButton));
 
 
-		return GurruPageFactory.initElements(webDriver, GurruPremierCreateContactPage.class);
+		return GurruPageFactory.initElements(webDriver, GurruPremierCreateUserPage.class);
 	}
 
 	@Override

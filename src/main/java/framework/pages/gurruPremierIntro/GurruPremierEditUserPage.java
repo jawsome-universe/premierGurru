@@ -9,7 +9,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class GurruPremierCreateUserPage extends Page {
+public class GurruPremierEditUserPage extends Page {
 
 	//Click on Email text input field
 	@FindBy(xpath = "//div[contains(@class, 'form-group')]/input[contains(@ng-model, 'user.email')]")
@@ -63,12 +63,12 @@ public class GurruPremierCreateUserPage extends Page {
 	private WebElement createButton;
 
 
-	public GurruPremierCreateUserPage(WebDriver webDriver) {
+	public GurruPremierEditUserPage(WebDriver webDriver) {
 		super(webDriver);
 	}
 
 	@Step("Create User")
-	public GurruPremierUsersPageAfterUserCreation loginToGurruPremier(String login, String password) { //add new page class
+	public GurruPremierContactsPageAfterContactCreation loginToGurruPremier(String login, String password) { //add new page class
 		emailTestField.sendKeys("test567@test55.com"); //option for this should be added
 		usernameTextField.sendKeys("AutomationSales"); //option for this should be added
 		firstNameTextField.sendKeys("Automation"); //option for this should be added
@@ -83,7 +83,7 @@ public class GurruPremierCreateUserPage extends Page {
 		confirmPasswordTextField.sendKeys("123456");
 		createButton.click();
 
-		return GurruPageFactory.initElements(webDriver, GurruPremierUsersPageAfterUserCreation.class); //add new page class
+		return GurruPageFactory.initElements(webDriver, GurruPremierContactsPageAfterContactCreation.class); //add new page class
 	}
 
 	@Override
