@@ -16,7 +16,7 @@ public class GurruPremierUsersPage extends Page {
 	@FindBy(xpath = "//li[contains(@ng-class, 'UserAdministration')]//span")
 	private WebElement usersExpandList;
 
-	//Click on Contacts tab
+	//Click on Users tab
 	@FindBy(xpath = "//li[contains(@ng-class, 'UserAdministration')]//a[contains(@ui-sref , 'users')]")
 	private WebElement usersTab;
 
@@ -29,8 +29,8 @@ public class GurruPremierUsersPage extends Page {
 		super(webDriver);
 	}
 
-	@Step("Proceed to Create new Contact page")
-	public GurruPremierCreateUserPage loginToGurruPremier(String login, String password) { /////////////!!!!
+	@Step("Open Create new user page")
+	public GurruPremierCreateUserPage openUserCreatePage() {
 		usersExpandList.click();
 		usersTab.click();
 		getWebDriverWait(10).until(ExpectedConditions.elementToBeClickable(createUserButton));
@@ -43,6 +43,6 @@ public class GurruPremierUsersPage extends Page {
 
 	@Override
 	public Function<WebDriver, ?> isPageLoaded() {
-		return wait -> !createUserButton.isEnabled();
+		return wait -> !usersExpandList.isEnabled();
 	}
 }

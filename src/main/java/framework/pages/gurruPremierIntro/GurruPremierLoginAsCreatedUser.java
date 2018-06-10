@@ -22,15 +22,15 @@ public class GurruPremierLoginAsCreatedUser extends Page {
 
 	public GurruPremierLoginAsCreatedUser(WebDriver webDriver) { super(webDriver); }
 
-	@Step("Login to Gurru Premier as created user")
-	public GurruPremierUsersPage loginToGurruPremier(String adminLogin, String adminPassword) { //
+	@Step("Login to Gurru Premier as created user: {login} / ******")
+	public GurruPremierUserDashboard loginToGurruPremierAsNewUser(String adminLogin, String adminPassword) { ///user data
 		usernameTextField.clear();
-		usernameTextField.sendKeys("test567@test55.com");
+		usernameTextField.sendKeys("test567@test55.com"); //add as on Login page?
 		passwordTextField.clear();
-		passwordTextField.sendKeys("123456");
+		passwordTextField.sendKeys("123456"); //add as on Login page?
 		loginButton.click();
 
-		return GurruPageFactory.initElements(webDriver, GurruPremierUsersPage.class); }
+		return GurruPageFactory.initElements(webDriver, GurruPremierUserDashboard.class); }
 
 
 	@Override

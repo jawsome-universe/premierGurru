@@ -3,7 +3,6 @@ package framework.pages.gurruPremierIntro;
 import com.google.common.base.Function;
 import framework.pages.GurruPageFactory;
 import framework.pages.Page;
-import framework.pages.gurruPremier.GurruPremierContactsPage;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -27,7 +26,7 @@ public class GurruPremierLogin extends Page {
 	public GurruPremierLogin(WebDriver webDriver) { super(webDriver); }
 
 	@Step("Login to Gurru Premier with Admin credentials: {login} / ********")
-	public GurruPremierUsersPage loginToGurruPremier(String adminLogin, String adminPassword) {
+	public GurruPremierUsersPage loginToGurruPremier(String adminLogin, String adminPassword) { //on the test add admin creadentials
 		gurruLogoImage.isDisplayed();
 		usernameTextField.clear();
 		usernameTextField.sendKeys(adminLogin);
@@ -36,8 +35,6 @@ public class GurruPremierLogin extends Page {
 		loginButton.click();
 
 		return GurruPageFactory.initElements(webDriver, GurruPremierUsersPage.class); }
-
-
 
 
 	@Override

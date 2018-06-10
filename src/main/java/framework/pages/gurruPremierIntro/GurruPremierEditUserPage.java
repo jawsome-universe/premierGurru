@@ -51,18 +51,9 @@ public class GurruPremierEditUserPage extends Page {
 	@FindBy(xpath = "//span[contains(@class, 'k-widget k-dropdown k-header form-control ng-valid ng-valid-required ng-not-modified ng-pristine k-invalid ng-touched')]//option[1]")
 	private WebElement selectSupervisor;
 
-	//Click on Password text input field
-	@FindBy(xpath = "//div[contains(@class, 'form-group')]/input[contains(@ng-model, 'user.password')][1]")
-	private WebElement passwordTextField;
-
-	//Click on Confirm Password text input field
-	@FindBy(xpath = "/html//div[2]/form/div[1]//fieldset/div[12]/input")
-	private WebElement confirmPasswordTextField;
-
 	//Click on Logount button
 	@FindBy(xpath = ".//*[@id='dLabel']")
 	private WebElement topBarDropdown;
-
 	@FindBy(xpath = ".//*[@id='logoutLnk']")
 	private WebElement logoutButton;
 
@@ -72,11 +63,11 @@ public class GurruPremierEditUserPage extends Page {
 	}
 
 	@Step("Check data on Edit User page")
-	public GurruPremierContactsPageAfterContactCreation loginToGurruPremier(String login, String password) { //add new page class
-		emailTestField.getAttribute("test567@test55.com"); //option for this should be added
-		usernameTextField.getAttribute("AutomationSales"); //option for this should be added
-		firstNameTextField.getAttribute("Automation"); //option for this should be added
-		lastNameTextField.getAttribute("Sales Test");  //option for this should be added
+	public GurruPremierLoginAsCreatedUser checkUserData() {
+		emailTestField.getAttribute("test567@test55.com"); //add as on Login page?
+		usernameTextField.getAttribute("AutomationSales");
+		firstNameTextField.getAttribute("Automation");
+		lastNameTextField.getAttribute("Sales Test");
 		phoneNumberTextField.getAttribute("0123456789");
 		positionTextField.sendKeys("Sales person");
 		//openRoleDropdown.click();
@@ -86,7 +77,7 @@ public class GurruPremierEditUserPage extends Page {
 		topBarDropdown.click();
 		logoutButton.click();
 
-		return GurruPageFactory.initElements(webDriver, GurruPremierContactsPageAfterContactCreation.class); //add new page class
+		return GurruPageFactory.initElements(webDriver, GurruPremierLoginAsCreatedUser.class); //add new page class
 	}
 
 	@Override

@@ -68,19 +68,20 @@ public class GurruPremierCreateUserPage extends Page {
 	}
 
 	@Step("Create User")
-	public GurruPremierUsersPageAfterUserCreation loginToGurruPremier(String login, String password) { //add new page class
-		emailTestField.sendKeys("test567@test55.com"); //option for this should be added
-		usernameTextField.sendKeys("AutomationSales"); //option for this should be added
-		firstNameTextField.sendKeys("Automation"); //option for this should be added
-		lastNameTextField.sendKeys("Sales Test");  //option for this should be added
+	public GurruPremierUsersPageAfterUserCreation createNewUser() {
+		emailTestField.sendKeys("test567@test55.com"); //add as on Login page?
+		usernameTextField.sendKeys("AutomationSales");
+		firstNameTextField.sendKeys("Automation");
+		lastNameTextField.sendKeys("Test");
 		phoneNumberTextField.sendKeys("0123456789");
 		positionTextField.sendKeys("Sales person");
 		openRoleDropdown.click();
 		selectRole.click();
 		openSupervisorDropdown.click();
 		selectSupervisor.click();
-		passwordTextField.sendKeys("123456");
-		confirmPasswordTextField.sendKeys("123456");
+		passwordTextField.sendKeys("123456"); //add as on Login page?
+		confirmPasswordTextField.clear();
+		confirmPasswordTextField.sendKeys("123456"); //add as on Login page?
 		createButton.click();
 
 		return GurruPageFactory.initElements(webDriver, GurruPremierUsersPageAfterUserCreation.class); //add new page class

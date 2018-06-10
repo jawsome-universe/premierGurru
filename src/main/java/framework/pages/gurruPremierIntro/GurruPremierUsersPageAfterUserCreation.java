@@ -33,7 +33,7 @@ public class GurruPremierUsersPageAfterUserCreation extends Page {
 	}
 
 	@Step("Check validation pop up and proceed to Edit Contact page")
-	public GurruPremierEditUserPage loginToGurruPremier(String login, String password) { /////////////////!!!!!
+	public GurruPremierEditUserPage checkConfirmPopupAndGoToEditUserPage() {
 		confirmPopup.isDisplayed();
 		confirmPopup.getAttribute("Successfully created User");
 		confirmPopupCloseButton.click();
