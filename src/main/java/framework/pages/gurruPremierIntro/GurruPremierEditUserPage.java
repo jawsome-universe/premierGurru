@@ -59,29 +59,32 @@ public class GurruPremierEditUserPage extends Page {
 	@FindBy(xpath = "/html//div[2]/form/div[1]//fieldset/div[12]/input")
 	private WebElement confirmPasswordTextField;
 
-	@FindBy(xpath = "//button[contains(@class, 'btn bg_gradient_blue btn_like btn_update')][2]")
-	private WebElement createButton;
+	//Click on Logount button
+	@FindBy(xpath = ".//*[@id='dLabel']")
+	private WebElement topBarDropdown;
+
+	@FindBy(xpath = ".//*[@id='logoutLnk']")
+	private WebElement logoutButton;
 
 
 	public GurruPremierEditUserPage(WebDriver webDriver) {
 		super(webDriver);
 	}
 
-	@Step("Create User")
+	@Step("Check data on Edit User page")
 	public GurruPremierContactsPageAfterContactCreation loginToGurruPremier(String login, String password) { //add new page class
-		emailTestField.sendKeys("test567@test55.com"); //option for this should be added
-		usernameTextField.sendKeys("AutomationSales"); //option for this should be added
-		firstNameTextField.sendKeys("Automation"); //option for this should be added
-		lastNameTextField.sendKeys("Sales Test");  //option for this should be added
-		phoneNumberTextField.sendKeys("0123456789");
+		emailTestField.getAttribute("test567@test55.com"); //option for this should be added
+		usernameTextField.getAttribute("AutomationSales"); //option for this should be added
+		firstNameTextField.getAttribute("Automation"); //option for this should be added
+		lastNameTextField.getAttribute("Sales Test");  //option for this should be added
+		phoneNumberTextField.getAttribute("0123456789");
 		positionTextField.sendKeys("Sales person");
-		openRoleDropdown.click();
-		selectRole.click();
-		openSupervisorDropdown.click();
-		selectSupervisor.click();
-		passwordTextField.sendKeys("123456");
-		confirmPasswordTextField.sendKeys("123456");
-		createButton.click();
+		//openRoleDropdown.click();
+		//selectRole.click();
+		//openSupervisorDropdown.click();
+		//selectSupervisor.click();
+		topBarDropdown.click();
+		logoutButton.click();
 
 		return GurruPageFactory.initElements(webDriver, GurruPremierContactsPageAfterContactCreation.class); //add new page class
 	}
