@@ -3,7 +3,6 @@ package framework.pages.gurruPremierIntro;
 import com.google.common.base.Function;
 import framework.pages.GurruPageFactory;
 import framework.pages.Page;
-import framework.pages.gurruPremier.GurruPremierEditContactPage;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -35,7 +34,8 @@ public class GurruPremierUsersPageAfterUserCreation extends Page {
 	@Step("Check validation pop up and proceed to Edit Contact page")
 	public GurruPremierEditUserPage checkConfirmPopupAndGoToEditUserPage() {
 		confirmPopup.isDisplayed();
-		confirmPopup.getAttribute("Successfully created User");
+		confirmPopup.getText();
+		//confirmPopup.getAttribute("Successfully created User");
 		confirmPopupCloseButton.click();
 		getWebDriverWait(5).until(ExpectedConditions.elementToBeClickable((WebElement) firstElementFromUsersList));
 		action.doubleClick((WebElement) firstElementFromUsersList).perform(); //doubleclick on first element in the grid

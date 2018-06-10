@@ -1,7 +1,6 @@
-package framework.gurruPremierIntroTest;
+package framework.gurruPremierIntroTest.testbase;
 
 import framework.pages.GurruPageFactory;
-import framework.pages.gurruPremier.GurruPremierLoginPage;
 import framework.pages.gurruPremierIntro.GurruPremierLogin;
 import framework.utility.LogFactory;
 import framework.utility.PropertyLoader;

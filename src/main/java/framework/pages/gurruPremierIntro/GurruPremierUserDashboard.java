@@ -20,12 +20,12 @@ public class GurruPremierUserDashboard extends Page {
 		super(webDriver);
 	}
 
-	@Step("Open Create new user page")
-	public GurruPremierCreateUserPage openUserCreatePage() { /////
+	@Step("check user full name")
+	public boolean checkUserFullName() { /////
 		topBarDropdown.click();
 		topBarDropdown.getAttribute("Automation Test");
 
-		return GurruPageFactory.initElements(webDriver, GurruPremierCreateUserPage.class); ///
+		return topBarDropdown.isDisplayed(); ///
 	}
 
 	@Override
