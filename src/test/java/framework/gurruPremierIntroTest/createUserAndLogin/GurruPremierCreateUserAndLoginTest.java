@@ -32,7 +32,7 @@ public class GurruPremierCreateUserAndLoginTest extends TestBaseGurruPremierIntr
 	public void createNewUserTest(){
 		GurruPremierUsersPage gurruPremierUsersPage = gurruPremierLogin.loginToGurruPremier("wtAdmin", "Aa123456!");
 
-		GurruPremierEditUserPage gurruPremierUsersPageAfterUserCreation = gurruPremierUsersPage
+		GurruPremierEditUserPage gurruPremierUserDashboard = gurruPremierUsersPage
 				.openUserCreatePage()
 				.createNewUser()
 				.checkConfirmPopupAndGoToEditUserPage();

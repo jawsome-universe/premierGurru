@@ -35,7 +35,7 @@ public class GurruPremierUsersPageAfterUserCreation extends Page {
 	public GurruPremierEditUserPage checkConfirmPopupAndGoToEditUserPage() {
 		confirmPopup.isDisplayed();
 		confirmPopup.getText();
-		//confirmPopup.getAttribute("Successfully created User");
+		confirmPopup.getAttribute("Successfully created User");
 		confirmPopupCloseButton.click();
 		getWebDriverWait(5).until(ExpectedConditions.elementToBeClickable((WebElement) firstElementFromUsersList));
 		action.doubleClick((WebElement) firstElementFromUsersList).perform(); //doubleclick on first element in the grid
