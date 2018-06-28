@@ -16,112 +16,168 @@ public class GurruPremierSimpleIntroTest extends TestBaseGurruPremierIntro {
 
 
 	@Test
-	public void createNewUserTest(){
+	public void createNewUserTest() {
 		webDriver.get(PropertyLoader.loadProperty("testsite7.url"));
 		WebDriverWait wdWait0 = new WebDriverWait(webDriver, 5);
 		wdWait0.until(ExpectedConditions.visibilityOf(webDriver.findElement(By.xpath("//*[@id=\"login-username\"]"))));
 
-		
+		//Gurru Logo
+		WebElement gurruLogoImaged = webDriver.findElement(By.xpath("//*[@id=\"login_form\"]/div[1]/img"));
+		gurruLogoImaged.isDisplayed();
+
+		//Fill Username field
+		WebElement userNameTextField = webDriver.findElement(By.xpath("//*[@id=\"login-username\"]"));
+		userNameTextField.sendKeys("wtAdmin");
+
+		//Fill Password field
+		WebElement passwordTextField = webDriver.findElement(By.xpath("//*[@id=\"login-password\"]"));
+		passwordTextField.sendKeys("Aa123456!");
+
+		//Login button click
+		WebElement loginButton = webDriver.findElement(By.xpath("//*[@id=\"loginBtn\"]"));
+		loginButton.click();
+		//wait until page is loading after login
+		wdWait0.until(ExpectedConditions.visibilityOf(webDriver.findElement(By.xpath("//li[contains(@ng-class, 'UserAdministration')]//span"))));
+
+		//Verify that Admin is logged in
+		String checkAdminName = webDriver.findElement(By.xpath(".//*[@id='dLabel']")).getText();
+		Assert.assertTrue(checkAdminName.contains("Admin")); ////////////////////
+
+		////////////
+
+		//Click on Users tab
+		WebElement usersTab = webDriver.findElement(By.xpath("//li[contains(@ng-class, 'UserAdministration')]//a[contains(@ui-sref , 'users')]"));
+		usersTab.click();
+		wdWait0.until(ExpectedConditions.elementToBeClickable(webDriver.findElement(By.xpath("//*[contains(text(), 'Create User')]"))));
+
+		//Click on Create User button
+		WebElement createUserButton = webDriver.findElement(By.xpath("//*[contains(text(), 'Create User')]"));
+		createUserButton.click();
+		//wait until Create user page is load
+		wdWait0.until(ExpectedConditions.visibilityOf(webDriver.findElement(By.xpath("//span[contains(@class, 'k-widget k-dropdown k-header form-control ng-valid ng-valid-required ng-not-modified ng-pristine k-invalid ng-touched')]/*[1]"))));
+
+		////////////// Fill Create user fields
+
+		//Email text input field
+		WebElement emailTextField = webDriver.findElement(By.xpath("//div[contains(@class, 'form-group')]/input[contains(@ng-model, 'user.email')]"));
+		emailTextField.sendKeys("test567@test55.com");
+
+		//Username text input field
+		WebElement usernameTextField = webDriver.findElement(By.xpath("//div[contains(@class, 'form-group')]/input[contains(@ng-model, 'user.userName')]"));
+		usernameTextField.sendKeys("AutomationSales");
 
 		//First Name text input field
-		WebElement firstNameField = driver.findElement(By.name("firstname")); //xpath = "//*[@name='firstname']"
-		firstNameField.sendKeys(firstName);
+		WebElement firstNameTextField = webDriver.findElement(By.xpath("//div[contains(@class, 'form-group')]/input[contains(@ng-model, 'user.firstName')]"));
+		firstNameTextField.sendKeys("Automation");
 
-		//Second Name text input field
-		WebElement lastNameField = driver.findElement(By.name("lastname")); //xpath = "//*[@name='lastname']"
-		lastNameField.sendKeys(lastName);
+		//Last Name text input field
+		WebElement lastNameTextField = webDriver.findElement(By.xpath("//div[contains(@class, 'form-group')]/input[contains(@ng-model, 'user.lastName')]"));
+		lastNameTextField.sendKeys("Test");
 
-		//Sex (gender) radiobutton
-		WebElement sex = driver.findElement(By.xpath("//*[@id='sex-0']")); //male
-		sex.click();
+		//Phone Number text input field
+		WebElement phoneNumberTextField = webDriver.findElement(By.xpath("//div[contains(@class, 'form-group')]/input[contains(@ng-model, 'user.phoneNumber')]"));
+		phoneNumberTextField.sendKeys("0123456789");
 
-		//Years of Experience radiobutton
-		WebElement experienceYears = driver.findElement(By.xpath("//*[@id='exp-2']")); //3
-		experienceYears.click();
+		//Position text input field
+		WebElement positionTextField = webDriver.findElement(By.xpath("//div[contains(@class, 'form-group')]/input[contains(@ng-model, 'user.position')]"));
+		positionTextField.sendKeys("Sales person");
 
-		//Date text input field
-		WebElement dateField = driver.findElement(By.xpath("//*[@id='datepicker']"));
-		dateField.sendKeys("11.22.63");
+		//Click on Role drop-down menu
+		WebElement openRoleDropdown = webDriver.findElement(By.xpath("//span[contains(@aria-activedescendant, 'ac53e975-4a39-4169-bee2-5bda79379b10')]/*[1]"));
+		openRoleDropdown.click();
+		//Select Role from drop-down list - Sales
+		WebElement selectRole = webDriver.findElement(By.xpath("//span[contains(@aria-activedescendant, 'ac53e975-4a39-4169-bee2-5bda79379b10')]//option[contains(@value, 'fa13ba5f-fd45-4a6d-a859-4f95649b9ed5')]"));
+		selectRole.click();
 
-		//Profession checkboxes
-		WebElement manualTester = driver.findElement(By.xpath("//*[@id='profession-0']")); //manual
-		manualTester.click();
-		WebElement automationTester = driver.findElement(By.xpath("//*[@id='profession-1']")); //manual
-		automationTester.click();
+		//Click on Supervisor drop-down menu
+		WebElement openSupervisorDropdown = webDriver.findElement(By.xpath("//span[contains(@class, 'k-widget k-dropdown k-header form-control ng-valid ng-valid-required ng-not-modified ng-pristine k-invalid ng-touched')]/*[1]"));
+		openSupervisorDropdown.click();
+		//Select Supervisor from drop-down list - Sales
+		WebElement selectSupervisor = webDriver.findElement(By.xpath("//span[contains(@class, 'k-widget k-dropdown k-header form-control ng-valid ng-valid-required ng-not-modified ng-pristine k-invalid ng-touched')]//option[1]"));
+		selectSupervisor.click();
 
-		//Automation Tools checkboxes
-		WebElement automationTool = driver.findElement(By.xpath("//*[@id='tool-1']")); //Selenium IDE
-		automationTester.click();
-		automationTester.findElement(By.xpath("//*[@id='tool-2']")).click(); //Selenium Webdriver
+		//Password text input field
+		WebElement userPasswordTextField = webDriver.findElement(By.xpath("//div[contains(@class, 'form-group')]/input[contains(@ng-model, 'user.password')][1]"));
+		userPasswordTextField.sendKeys("123456");
 
-		//Selenium commands
-		WebElement seleniumCommandWebElementFirst = driver.findElement(By.xpath("//*[@id='selenium_commands']/option[5]"));
-		seleniumCommandWebElementFirst.click();
-		WebElement seleniumCommandWebElementSecond = driver.findElement(By.xpath(".//*[@id='selenium_commands']/option[3]"));
-		seleniumCommandWebElementSecond.click();
+		//Confirm Password text input field
+		WebElement confirmUserPasswordTextField = webDriver.findElement(By.xpath("/html//div[2]/form/div[1]//fieldset/div[12]/input"));
+		confirmUserPasswordTextField.clear();
+		confirmUserPasswordTextField.sendKeys("123456");
 
-		//Text1
-		String textOne = driver.findElement(By.xpath("//*[@id='NextedText']/span")).getText();
-		Assert.assertTrue(textOne.contains("Text"));
+		//Create user
+		WebElement createButton = webDriver.findElement(By.xpath("//button[contains(@class, 'btn bg_gradient_blue btn_like btn_update')][2]"));
+		createButton.click();
+		wdWait0.until(ExpectedConditions.visibilityOf(webDriver.findElement(By.xpath("//*[@id=\"login_form\"]/div[1]/img"))));
 
-		//Submit button
-		WebElement submitButton = driver.findElement(By.xpath("//*[@id='submit']"));
-		submitButton.click();
+
+		/////////////////////////Users page after creation
+
+
+		//Check Confirm message is present
+		String confirmPopup = webDriver.findElement(By.xpath("//div[contains(@ng-class, 'alertClasses(message)')]")).getText();
+		Assert.assertTrue(confirmPopup.contains("Successfully created User"));
+
+		//Close pop up
+		WebElement confirmPopupCloseButton = webDriver.findElement(By.xpath("//div[contains(@ng-class, 'alertClasses(message)')]/button[1]"));
+		confirmPopupCloseButton.click();
+
+		//Find first user in the Users grid
+		WebElement firstElementFromUsersList = webDriver.findElement(By.xpath("//tbody[contains(@role, 'rowgroup')]/tr[1]"));
+		firstElementFromUsersList.click();
+		Actions actions = new Actions(webDriver);
+		actions.doubleClick(firstElementFromUsersList);
+		actions.perform();
+		//wait for element loading on Edit user page
+		wdWait0.until(ExpectedConditions.visibilityOf(webDriver.findElement(By.xpath("//span[contains(@class, 'k-widget k-dropdown k-header form-control ng-valid ng-valid-required ng-not-modified ng-pristine k-invalid ng-touched')]/*[1]"))));
+
+
+		///////////// Edit user page
+		//Email value verification
+		String emailValue = webDriver.findElement(By.xpath("//div[contains(@class, 'form-group')]/input[contains(@ng-model, 'user.email')]")).getText();
+		Assert.assertTrue(emailValue.contains("test567@test55.com"));
+
+		//Username value verification
+		String usernameValue = webDriver.findElement(By.xpath("//div[contains(@class, 'form-group')]/input[contains(@ng-model, 'user.userName')]")).getText();
+		Assert.assertTrue(usernameValue.contains("AutomationSales"));
+
+		//Phone Number value verification
+		String phoneValue = webDriver.findElement(By.xpath("//div[contains(@class, 'form-group')]/input[contains(@ng-model, 'user.phoneNumber')]")).getText();
+		Assert.assertTrue(phoneValue.contains("456"));
+
+		//Logout
+		WebElement topBarDropdown = webDriver.findElement(By.xpath(".//*[@id='dLabel']"));
+		topBarDropdown.click();
+		WebElement logoutButton = webDriver.findElement(By.xpath(".//*[@id='logoutLnk']"));
+		logoutButton.click();
+		wdWait0.until(ExpectedConditions.visibilityOf(webDriver.findElement(By.xpath("//span[contains(@class, 'k-widget k-dropdown k-header form-control ng-valid ng-valid-required ng-not-modified ng-pristine k-invalid ng-touched')]/*[1]"))));
+		Assert.assertTrue(gurruLogoImaged.isDisplayed());
 	}
 
-	@Test //Second step(or test)
-	public void SecondStepTest() throws Exception {
-		driver.get(baseUrl);
-		WebDriverWait wdWait0 = new WebDriverWait(driver, 5);
-		wdWait0.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//*[@id='continents']"))));
 
-		//Continents drop-down menu
-		WebElement continents = driver.findElement(By.xpath("//*[@id='continents']"));
-		//Move to drop-down menu
-		Actions actions = new Actions(driver);
-		actions.moveToElement(continents);
-		actions.perform();
-		//Thread.sleep(2000);
-		continents.click();
+	@Test
+	public void loginAsCreatedUser() {
+		webDriver.get(PropertyLoader.loadProperty("testsite7.url"));
+		WebDriverWait wdWait0 = new WebDriverWait(webDriver, 5);
+		wdWait0.until(ExpectedConditions.visibilityOf(webDriver.findElement(By.xpath("//*[@id=\"login-username\"]"))));
 
-		//Select Antartica
-		WebElement antartica = driver.findElement(By.xpath("//*[@id='continents']/option[7]"));
-		antartica.click();
-		//Verify that selected value contains some text
-		String antarticaValid = driver.findElement(By.xpath("//*[@id='continents']/option[7]")).getText();
-		Assert.assertTrue(antarticaValid.contains("Antar"));
+		//Fill Username field
+		WebElement userNameTextField = webDriver.findElement(By.xpath("//*[@id=\"login-username\"]"));
+		userNameTextField.sendKeys("test567@test55.com");
 
+		//Fill Password field
+		WebElement passwordTextField = webDriver.findElement(By.xpath("//*[@id=\"login-password\"]"));
+		passwordTextField.sendKeys("123456");
 
-		//Select Profile Picture
-		WebElement profilePicture = driver.findElement(By.xpath("//*[@id='photo']"));
-		//profilePicture.sendKeys("/Users/xsaven/Downloads/shield.jpg");
-		profilePicture.sendKeys("/Users/xsaven/IdeaProjects/LastSeleniumHomework/src/test/java/image/shield.jpg");
-		// Thread.sleep(5000);
+		//Login button click
+		WebElement loginButton = webDriver.findElement(By.xpath("//*[@id=\"loginBtn\"]"));
+		loginButton.click();
+		//wait until page is loading after login
+		wdWait0.until(ExpectedConditions.visibilityOf(webDriver.findElement(By.xpath("//li[contains(@ng-class, 'UserAdministration')]//span"))));
 
-		//Link Test
-		WebElement linkTest = driver.findElement(By.xpath("//*[@title='Automation Practice Table'][contains(strong,'Link Test')]/*[1]"));
-		actions.moveToElement(linkTest);
-		actions.perform();
-		linkTest.click();
-		//Thread.sleep(3000);
-
-	}
-
-
-	@Test //Third step(or test)
-	public void ThirdStepTest() throws Exception {
-		driver.get(baseUrl);
-		WebDriverWait wdWait0 = new WebDriverWait(driver, 5);
-		wdWait0.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//a[.='Selenium Automation Hybrid Framework']"))));
-
-		//Download framework
-		WebElement seleniumAutomationHybridFramework = driver.findElement(By.xpath("//a[.='Selenium Automation Hybrid Framework']"));
-		Actions secondActions = new Actions(driver);
-		secondActions.moveToElement(seleniumAutomationHybridFramework);
-		secondActions.perform();
-		seleniumAutomationHybridFramework.click();
-		//Thread.sleep(5000);
-
+		//Verify that Admin is logged in
+		String checkAdminName = webDriver.findElement(By.xpath(".//*[@id='dLabel']")).getText();
+		Assert.assertTrue(checkAdminName.contains("Automation Test")); ////////////////////
 
 	}
 }
